@@ -35,7 +35,7 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 //Current displayed texture
-SDL_Texture* gTexture = NULL;
+//SDL_Texture* gTexture = NULL;
 
 bool init()
 {
@@ -115,7 +115,7 @@ void close()
 	SDL_Quit();
 }
 
-int main( int argc, char* args[] )
+int main_old( int argc, char* args[] )
 {
 	//Start up SDL and create window
 	if( !init() )
