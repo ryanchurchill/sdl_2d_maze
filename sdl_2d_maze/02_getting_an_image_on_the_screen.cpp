@@ -171,8 +171,8 @@ int main( int argc, char* args[] )
 				SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0x00, 0xFF);
 				SDL_RenderDrawRect(gRenderer, &outlineRect);
 
-				//Update the surface
-				SDL_UpdateWindowSurface(gWindow);
+				//Update screen
+				SDL_RenderPresent(gRenderer);
 			}
 
 			//Wait two seconds
