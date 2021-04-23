@@ -3,8 +3,11 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <string>
+#include <ctime>
+#include <iostream>
 
 #include "Maze.h"
+#include "MazeGenerator.h"
 
 class App
 {

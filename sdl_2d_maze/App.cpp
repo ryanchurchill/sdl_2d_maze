@@ -144,11 +144,19 @@ void App::Close()
 
 int main(int argc, char* args[])
 {
-	Maze m = Maze();
-	m.DrawAsAscii();
-
 	//App app;
 	//return app.OnExecute();
+
+	//Maze m = Maze::GetDummyMaze();
+	//m.DrawAsAscii();
+
+	vector<PathSegment> path = PathGenerator().GeneratePath(Point{ 0,0 }, Point{ 3,3 });
+
+	//srand((unsigned)time(0));
+	/*std::cout << rand() % 2;
+	std::cout << rand() % 2;
+	std::cout << rand() % 2;
+	std::cout << rand() % 2;*/
 
 	return 0;
 }

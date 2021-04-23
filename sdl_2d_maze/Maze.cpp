@@ -1,20 +1,10 @@
 #include "Maze.h"
-#include <iostream>
+
 
 Maze::Maze()
 {
-	// instantiate a completely closed maze
-	for (int y = 0; y < UNITS_Y; y++) {
-		for (int x = 0; x < UNITS_X; x++) {
-			cells[x][y] = MazeCell{ true, true, true, true };
-		}
-	}
-
-	// now mess with it
-	cells[4][0].lineTop = false;
-
-	cells[5][5].lineRight = false;
-	cells[6][5].lineLeft = false;
+	center.x = UNITS_X / 2;
+	center.y = UNITS_Y / 2;
 
 }
 
@@ -49,7 +39,12 @@ void Maze::DrawAsAscii()
 				}
 			}
 			if (c.lineBottom) {
-				std::cout << "_";
+				/*if (x == center.x && y == center.y) {
+					std::cout << "x\u0332";
+				}
+				else {*/
+					std::cout << "_";
+				//}
 			}
 			else {
 				std::cout << " ";
@@ -63,5 +58,24 @@ void Maze::DrawAsAscii()
 		}
 		std::cout << "\n";
 	}
+}
+
+Maze Maze::GetDummyMaze()
+{
+	Maze m = Maze();
+	// instantiate a completely closed maze
+	for (int y = 0; y < UNITS_Y; y++) {
+		for (int x = 0; x < UNITS_X; x++) {
+			m.cells[x][y] = MazeCell{ true, true, true, true };
+		}
+	}
+
+	// now mess with it
+	m.cells[4][0].lineTop = false;
+
+	m.cells[5][5].lineRight = false;
+	m.cells[6][5].lineLeft = false;
+
+	return m;
 }
 
