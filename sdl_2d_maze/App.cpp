@@ -144,6 +144,11 @@ void App::Close()
 
 int main(int argc, char* args[])
 {
-	App app;
-	return app.OnExecute();
+	Maze m = Maze();
+	m.DrawAsAscii();
+
+	//App app;
+	//return app.OnExecute();
+
+	return 0;
 }

@@ -26,9 +26,8 @@ public:
 
 	void DrawAsAscii();
 
-	static void DrawCell(MazeCell c);
-
 private:
-	MazeCell cells[];
+	// [x][y] starting at upper left
+	MazeCell cells[UNITS_X][UNITS_Y];
 };
 
