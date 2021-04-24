@@ -1,7 +1,7 @@
 #include "PlayerEntity.h"
 #include "MazeEntity.h"
 
-PlayerEntity::PlayerEntity(Point startingPoint) : CurrentPoint(startingPoint)
+PlayerEntity::PlayerEntity(Maze* m) : currentPoint(m->startingPoint), maze(m)
 {
 }
 
@@ -30,8 +30,8 @@ void PlayerEntity::OnRender(SDL_Renderer* gRenderer)
 {
 	// Red
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-	int x = CurrentPoint.x * PIXELS_PER_UNIT + MAZE_PADDING + (PIXELS_PER_UNIT / 2);
-	int y = CurrentPoint.y * PIXELS_PER_UNIT + MAZE_PADDING + (PIXELS_PER_UNIT / 2);
+	int x = currentPoint.x * PIXELS_PER_UNIT + MAZE_PADDING + (PIXELS_PER_UNIT / 2);
+	int y = currentPoint.y * PIXELS_PER_UNIT + MAZE_PADDING + (PIXELS_PER_UNIT / 2);
 	int r = (PIXELS_PER_UNIT / 2) - 5;
 	SDL_Helper::DrawCircle(gRenderer, x, y, r);
 	
@@ -42,16 +42,16 @@ void PlayerEntity::TryMove(Direction d)
 	// TODO: validate
 	switch (d) {
 	case UP:
-		CurrentPoint.y--;
+		currentPoint.y--;
 		break;
 	case RIGHT:
-		CurrentPoint.x++;
+		currentPoint.x++;
 		break;
 	case DOWN:
-		CurrentPoint.y++;
+		currentPoint.y++;
 		break;
 	case LEFT:
-		CurrentPoint.x--;
+		currentPoint.x--;
 		break;
 	}
 }

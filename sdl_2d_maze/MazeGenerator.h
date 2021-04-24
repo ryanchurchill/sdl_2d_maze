@@ -21,13 +21,13 @@ class MazeGenerator
 {
 public:
 	MazeGenerator();
-	Maze GenerateMaze();
+	Maze* GenerateMaze();
 
 	static int GetRandomInt(int min, int max);
 	static Direction GetRandomDirection(vector<Direction>);
 
 private:
-	Maze m;
+	Maze *m;
 	vector<Point> CellsVisited;
 
 	void CarveClosedMazeIntoPerfectMaze();

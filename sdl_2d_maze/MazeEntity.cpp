@@ -3,7 +3,7 @@
 //MazeEntity::MazeEntity() : maze(NULL) {
 //	int x = 0;
 //}
-MazeEntity::MazeEntity(Maze m) : maze(m) {}
+MazeEntity::MazeEntity(Maze *m) : maze(m) {}
 
 
 void MazeEntity::OnRender(SDL_Renderer* gRenderer)
@@ -13,7 +13,7 @@ void MazeEntity::OnRender(SDL_Renderer* gRenderer)
 
 	for (int x = 0; x < UNITS_X; x++) {
 		for (int y = 0; y < UNITS_Y; y++) {
-			RenderCell((maze.cells[x][y]), x, y, gRenderer);
+			RenderCell((maze->cells[x][y]), x, y, gRenderer);
 		}
 	}
 }

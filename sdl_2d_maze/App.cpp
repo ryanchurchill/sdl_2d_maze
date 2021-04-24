@@ -54,9 +54,9 @@ bool App::Init()
 	}
 
 	MazeGenerator mg = MazeGenerator();
-	Maze maze = mg.GenerateMaze();
+	Maze* maze = mg.GenerateMaze();
 	mazeEntity = new MazeEntity(maze);
-	player = new PlayerEntity(maze.startingPoint);
+	player = new PlayerEntity(maze);
 
 	return success;
 }

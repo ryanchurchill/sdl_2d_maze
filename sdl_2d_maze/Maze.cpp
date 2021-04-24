@@ -58,13 +58,13 @@ void Maze::DrawAsAscii()
 	}
 }
 
-Maze Maze::GetClosedMaze()
+Maze* Maze::GetClosedMaze()
 {
-	Maze m = Maze();
+	Maze* m = new Maze();
 	// instantiate a completely closed maze
 	for (int y = 0; y < UNITS_Y; y++) {
 		for (int x = 0; x < UNITS_X; x++) {
-			m.cells[x][y] = MazeCell{ true, true, true, true };
+			m->cells[x][y] = MazeCell{ true, true, true, true };
 		}
 	}
 

@@ -34,7 +34,7 @@ public:
 
 	void DrawAsAscii();
 
-	static Maze GetClosedMaze();
+	static Maze* GetClosedMaze();
 
 	// TODO: make private?
 	// [x][y] starting at upper left

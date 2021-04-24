@@ -4,7 +4,7 @@ MazeGenerator::MazeGenerator()
 {
 }
 
-Maze MazeGenerator::GenerateMaze()
+Maze* MazeGenerator::GenerateMaze()
 {
 	// initialize vars
 	m = Maze::GetClosedMaze();
@@ -39,8 +39,8 @@ void MazeGenerator::addStartAndExit(int numEntrances)
 			y = GetRandomInt(0, UNITS_Y - 1);
 		}
 
-		m.exit = Point{ x, y };
-		MazeCell* cellWithExit = GetCellFromPoint(m.exit);
+		m->exit = Point{ x, y };
+		MazeCell* cellWithExit = GetCellFromPoint(m->exit);
 
 		switch (border) {
 		case UP:
@@ -59,9 +59,9 @@ void MazeGenerator::addStartAndExit(int numEntrances)
 	}
 
 	// starting position will go in the opposite quadrant as the exit
-	Quadrant exitQuadrant = GetQuadrant(m.exit);
+	Quadrant exitQuadrant = GetQuadrant(m->exit);
 	Quadrant startingPointQuadrant = GetInverseQuadrant(exitQuadrant);
-	m.startingPoint = GetRandomPointInQuadrant(startingPointQuadrant);
+	m->startingPoint = GetRandomPointInQuadrant(startingPointQuadrant);
 }
 
 int MazeGenerator::GetRandomInt(int min, int max)
@@ -86,7 +86,7 @@ Direction MazeGenerator::GetRandomDirection(vector<Direction> directions)
 
 void MazeGenerator::CarveClosedMazeIntoPerfectMaze()
 {
-	m.DrawAsAscii();
+	m->DrawAsAscii();
 
 	// start at a random cell
 	Point startingCell = Point{ GetRandomInt(0, UNITS_X-1), GetRandomInt(0, UNITS_Y-1) };
@@ -113,11 +113,11 @@ void MazeGenerator::CarveClosedMazeIntoPerfectMaze()
 
 		if (counter % 1000 == 0) {
 			cout << "Counter : " << counter << "\n";
-			m.DrawAsAscii();
+			m->DrawAsAscii();
 		}
 	}
 	cout << "Counter : " << counter << "\n";
-	m.DrawAsAscii();
+	m->DrawAsAscii();
 }
 
 bool MazeGenerator::CellHasBeenVisited(Point p)
@@ -218,7 +218,7 @@ Point MazeGenerator::GetDestinationPoint(Point a, Direction d)
 
 MazeCell* MazeGenerator::GetCellFromPoint(Point p)
 {
-	return &(m.cells[p.x][p.y]);
+	return &(m->cells[p.x][p.y]);
 }
 
 Quadrant MazeGenerator::GetInverseQuadrant(Quadrant q)
