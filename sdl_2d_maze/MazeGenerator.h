@@ -38,7 +38,7 @@ private:
 	vector<Direction> GetAvailableDirections(Point p);
 	void ConnectCells(Point a, Direction d);
 	Point GetDestinationPoint(Point a, Direction d);
-	MazeCell* GetCellFromPoint(Point p);
+	
 	Quadrant GetQuadrant(Point p);
 	Quadrant GetInverseQuadrant(Quadrant q);
 	Point GetRandomPointInQuadrant(Quadrant q);

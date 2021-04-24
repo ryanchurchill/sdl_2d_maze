@@ -40,7 +40,7 @@ void MazeGenerator::addStartAndExit(int numEntrances)
 		}
 
 		m->exit = Point{ x, y };
-		MazeCell* cellWithExit = GetCellFromPoint(m->exit);
+		MazeCell* cellWithExit = m->GetCellFromPoint(m->exit);
 
 		switch (border) {
 		case UP:
@@ -165,8 +165,8 @@ vector<Direction> MazeGenerator::GetAvailableDirections(Point p)
 
 void MazeGenerator::ConnectCells(Point a, Direction d)
 {
-	MazeCell* SourceCell = GetCellFromPoint(a);
-	MazeCell* DestinationCell = GetCellFromPoint(GetDestinationPoint(a, d));
+	MazeCell* SourceCell = m->GetCellFromPoint(a);
+	MazeCell* DestinationCell = m->GetCellFromPoint(GetDestinationPoint(a, d));
 
 	switch (d) {
 	case UP:
@@ -214,11 +214,6 @@ Point MazeGenerator::GetDestinationPoint(Point a, Direction d)
 
 
 	return ret;
-}
-
-MazeCell* MazeGenerator::GetCellFromPoint(Point p)
-{
-	return &(m->cells[p.x][p.y]);
 }
 
 Quadrant MazeGenerator::GetInverseQuadrant(Quadrant q)

@@ -41,6 +41,7 @@ public:
 	MazeCell cells[UNITS_X][UNITS_Y];
 	Point exit;
 	Point startingPoint;
+	MazeCell* GetCellFromPoint(Point p);
 private:
 	
 };

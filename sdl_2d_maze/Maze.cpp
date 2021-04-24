@@ -77,3 +77,7 @@ Maze* Maze::GetClosedMaze()
 	return m;
 }
 
+MazeCell* Maze::GetCellFromPoint(Point p)
+{
+	return &(cells[p.x][p.y]);
+}

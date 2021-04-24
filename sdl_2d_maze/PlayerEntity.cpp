@@ -42,16 +42,24 @@ void PlayerEntity::TryMove(Direction d)
 	// TODO: validate
 	switch (d) {
 	case UP:
-		currentPoint.y--;
+		if (!(maze->GetCellFromPoint(currentPoint)->lineTop)) {
+			currentPoint.y--;
+		}
 		break;
 	case RIGHT:
-		currentPoint.x++;
+		if (!(maze->GetCellFromPoint(currentPoint)->lineRight)) {
+			currentPoint.x++;
+		}
 		break;
 	case DOWN:
-		currentPoint.y++;
+		if (!(maze->GetCellFromPoint(currentPoint)->lineBottom)) {
+			currentPoint.y++;
+		}
 		break;
 	case LEFT:
-		currentPoint.x--;
+		if (!(maze->GetCellFromPoint(currentPoint)->lineLeft)) {
+			currentPoint.x--;
+		}
 		break;
 	}
 }
