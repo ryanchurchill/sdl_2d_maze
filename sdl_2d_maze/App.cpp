@@ -150,13 +150,11 @@ int main(int argc, char* args[])
 	//Maze m = Maze::GetDummyMaze();
 	//m.DrawAsAscii();
 
-	vector<PathSegment> path = PathGenerator().GeneratePath(Point{ 0,0 }, Point{ 3,3 });
+	//vector<PathSegment> path = PathGenerator().GeneratePath(Point{ 0,0 }, Point{ 3,3 });
 
-	//srand((unsigned)time(0));
-	/*std::cout << rand() % 2;
-	std::cout << rand() % 2;
-	std::cout << rand() % 2;
-	std::cout << rand() % 2;*/
+	MazeGenerator mg;
+	Maze m = mg.GenerateMaze();
+	m.DrawAsAscii();
 
 	return 0;
 }

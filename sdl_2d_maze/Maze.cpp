@@ -60,7 +60,7 @@ void Maze::DrawAsAscii()
 	}
 }
 
-Maze Maze::GetDummyMaze()
+Maze Maze::GetClosedMaze()
 {
 	Maze m = Maze();
 	// instantiate a completely closed maze
@@ -71,10 +71,10 @@ Maze Maze::GetDummyMaze()
 	}
 
 	// now mess with it
-	m.cells[4][0].lineTop = false;
+	/*m.cells[4][0].lineTop = false;
 
 	m.cells[5][5].lineRight = false;
-	m.cells[6][5].lineLeft = false;
+	m.cells[6][5].lineLeft = false;*/
 
 	return m;
 }
