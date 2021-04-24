@@ -20,11 +20,14 @@ public:
 
 	static int GetRandomInt(int min, int max);
 	static Direction GetRandomDirection(vector<Direction>);
+
 private:
 	Maze m;
 	vector<Point> CellsVisited;
 
 	void CarveClosedMazeIntoPerfectMaze();
+	void AddRandomEntrances(int numEntrances);
+
 	bool CellHasBeenVisited(Point p);
 	bool AreAllCellsVisited();
 	vector<Direction> GetAvailableDirections(Point p);

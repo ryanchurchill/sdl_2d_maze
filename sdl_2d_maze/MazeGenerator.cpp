@@ -11,8 +11,48 @@ Maze MazeGenerator::GenerateMaze()
 	CellsVisited = vector<Point>();
 
 	CarveClosedMazeIntoPerfectMaze();
+	AddRandomEntrances(1);
 
 	return m;
+}
+
+void MazeGenerator::AddRandomEntrances(int numEntrances)
+{
+	vector<Point> existingEntrances;
+
+	for (int i = 0; i < numEntrances; i++) {
+		// use "direction" to decide which border will get the entrace
+		Direction border = GetRandomDirection({UP, DOWN, LEFT, RIGHT});
+
+		int x = 0;
+		int y = 0;
+
+		if (border == UP || border == DOWN) {
+			x = GetRandomInt(0, UNITS_X - 1);
+			y = (border == UP) ? 0 : UNITS_Y - 1;
+		}
+		else if (border == LEFT || border == RIGHT) {
+			x = (border == LEFT) ? 0 : UNITS_X - 1;
+			y = GetRandomInt(0, UNITS_Y - 1);
+		}
+
+		MazeCell* cell = GetCellFromPoint(Point{ x, y });
+
+		switch (border) {
+		case UP:
+			cell->lineTop = false;
+			break;
+		case RIGHT:
+			cell->lineRight = false;
+			break;
+		case DOWN:
+			cell->lineBottom = false;
+			break;
+		case LEFT:
+			cell->lineLeft = false;
+			break;
+		}
+	}
 }
 
 int MazeGenerator::GetRandomInt(int min, int max)
