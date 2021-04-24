@@ -3,9 +3,6 @@
 
 Maze::Maze()
 {
-	center.x = UNITS_X / 2;
-	center.y = UNITS_Y / 2;
-
 }
 
 // This is insane

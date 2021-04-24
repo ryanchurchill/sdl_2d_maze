@@ -11,15 +11,18 @@ Maze MazeGenerator::GenerateMaze()
 	CellsVisited = vector<Point>();
 
 	CarveClosedMazeIntoPerfectMaze();
-	AddRandomEntrances(1);
+	addStartAndExit(1);
 
 	return m;
 }
 
-void MazeGenerator::AddRandomEntrances(int numEntrances)
+/*
+* Parts of the code assume only one "entrance/exit", which will be set as the Maze property "exit"
+*/
+void MazeGenerator::addStartAndExit(int numEntrances)
 {
+	// Exit(s) (also called entrances)
 	vector<Point> existingEntrances;
-
 	for (int i = 0; i < numEntrances; i++) {
 		// use "direction" to decide which border will get the entrace
 		Direction border = GetRandomDirection({UP, DOWN, LEFT, RIGHT});
@@ -36,23 +39,29 @@ void MazeGenerator::AddRandomEntrances(int numEntrances)
 			y = GetRandomInt(0, UNITS_Y - 1);
 		}
 
-		MazeCell* cell = GetCellFromPoint(Point{ x, y });
+		m.exit = Point{ x, y };
+		MazeCell* cellWithExit = GetCellFromPoint(m.exit);
 
 		switch (border) {
 		case UP:
-			cell->lineTop = false;
+			cellWithExit->lineTop = false;
 			break;
 		case RIGHT:
-			cell->lineRight = false;
+			cellWithExit->lineRight = false;
 			break;
 		case DOWN:
-			cell->lineBottom = false;
+			cellWithExit->lineBottom = false;
 			break;
 		case LEFT:
-			cell->lineLeft = false;
+			cellWithExit->lineLeft = false;
 			break;
 		}
 	}
+
+	// starting position will go in the opposite quadrant as the exit
+	Quadrant exitQuadrant = GetQuadrant(m.exit);
+	Quadrant startingPointQuadrant = GetInverseQuadrant(exitQuadrant);
+	m.startingPoint = GetRandomPointInQuadrant(startingPointQuadrant);
 }
 
 int MazeGenerator::GetRandomInt(int min, int max)
@@ -80,7 +89,7 @@ void MazeGenerator::CarveClosedMazeIntoPerfectMaze()
 	m.DrawAsAscii();
 
 	// start at a random cell
-	Point startingCell = Point{ GetRandomInt(0, UNITS_X), GetRandomInt(0, UNITS_Y) };
+	Point startingCell = Point{ GetRandomInt(0, UNITS_X-1), GetRandomInt(0, UNITS_Y-1) };
 
 	stack<Point> cellTraversalStack;
 	cellTraversalStack.push(startingCell);
@@ -210,4 +219,78 @@ Point MazeGenerator::GetDestinationPoint(Point a, Direction d)
 MazeCell* MazeGenerator::GetCellFromPoint(Point p)
 {
 	return &(m.cells[p.x][p.y]);
+}
+
+Quadrant MazeGenerator::GetInverseQuadrant(Quadrant q)
+{
+	switch (q) {
+	case UPPER_LEFT:
+		return LOWER_RIGHT;
+		break;
+	case UPPER_RIGHT:
+		return LOWER_LEFT;
+		break;
+	case LOWER_RIGHT:
+		return UPPER_LEFT;
+		break;
+	case LOWER_LEFT:
+		return UPPER_RIGHT;
+		break;
+	}
+
+	return UNKNOWN;
+}
+
+/*
+The quadrant math isn't perfect
+*/
+Quadrant MazeGenerator::GetQuadrant(Point p)
+{
+	bool topElseBottom = (p.y < (UNITS_Y / 2));
+	bool leftElseRight = (p.x < (UNITS_X / 2));
+
+	if (topElseBottom && leftElseRight) {
+		return UPPER_LEFT;
+	}
+	else if (topElseBottom && !leftElseRight) {
+		return UPPER_RIGHT;
+	}
+	else if (!topElseBottom && leftElseRight) {
+		return LOWER_LEFT;
+	}
+	else {
+		return LOWER_RIGHT;
+	}
+}
+
+/*
+The quadrant math isn't perfect
+*/
+Point MazeGenerator::GetRandomPointInQuadrant(Quadrant q)
+{
+	int minX = 0;
+	int minY = 0;
+	int maxX = UNITS_X - 1;
+	int maxY = UNITS_Y - 1;
+
+	switch (q) {
+	case UPPER_LEFT:
+		maxX /= 2;
+		maxY /= 2;
+		break;
+	case UPPER_RIGHT:
+		minX = maxX / 2;
+		maxY /= 2;
+		break;
+	case LOWER_RIGHT:
+		minX = maxX / 2;
+		minY = maxY / 2;
+		break;
+	case LOWER_LEFT:
+		maxX /= 2;
+		minY = maxY / 2;
+		break;
+	}
+
+	return Point{ GetRandomInt(minX, maxY), GetRandomInt(minY, maxY) };
 }

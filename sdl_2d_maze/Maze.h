@@ -39,8 +39,8 @@ public:
 	// TODO: make private?
 	// [x][y] starting at upper left
 	MazeCell cells[UNITS_X][UNITS_Y];
-
-	Point center;
+	Point exit;
+	Point startingPoint;
 private:
 	
 };

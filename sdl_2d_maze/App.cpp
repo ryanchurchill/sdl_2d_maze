@@ -8,34 +8,6 @@ App::App()
 	mazeEntity = NULL;
 }
 
-int App::OnExecute()
-{
-	//Start up SDL and create window
-	if (!Init())
-	{
-		printf("Failed to initialize!\n");
-	}
-	else
-	{
-		// Main Loop
-		while (!Quit) {
-			// Handle Events on Queue
-			SDL_Event e;
-			/*while (SDL_PollEvent(&e) != 0)
-			{
-				ProcessEvent(e);
-			}*/
-
-			LogicLoop();
-			RenderLoop();
-		}
-
-		Close();
-	}
-
-	return 0;
-}
-
 bool App::Init()
 {
 	//Initialization flag
@@ -86,6 +58,34 @@ bool App::Init()
 	mazeEntity = new MazeEntity(maze);
 
 	return success;
+}
+
+int App::OnExecute()
+{
+	//Start up SDL and create window
+	if (!Init())
+	{
+		printf("Failed to initialize!\n");
+	}
+	else
+	{
+		// Main Loop
+		while (!Quit) {
+			// Handle Events on Queue
+			SDL_Event e;
+			while (SDL_PollEvent(&e) != 0)
+			{
+				ProcessEvent(e);
+			}
+
+			LogicLoop();
+			RenderLoop();
+		}
+
+		Close();
+	}
+
+	return 0;
 }
 
 void App::ProcessEvent(SDL_Event e)

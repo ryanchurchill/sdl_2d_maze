@@ -12,6 +12,10 @@ enum Direction {
 	UP, RIGHT, DOWN, LEFT, INVALID
 };
 
+enum Quadrant {
+	UPPER_LEFT, UPPER_RIGHT, LOWER_RIGHT, LOWER_LEFT, UNKNOWN
+};
+
 class MazeGenerator
 {
 public:
@@ -26,7 +30,7 @@ private:
 	vector<Point> CellsVisited;
 
 	void CarveClosedMazeIntoPerfectMaze();
-	void AddRandomEntrances(int numEntrances);
+	void addStartAndExit(int numEntrances);
 
 	bool CellHasBeenVisited(Point p);
 	bool AreAllCellsVisited();
@@ -34,4 +38,7 @@ private:
 	void ConnectCells(Point a, Direction d);
 	Point GetDestinationPoint(Point a, Direction d);
 	MazeCell* GetCellFromPoint(Point p);
+	Quadrant GetQuadrant(Point p);
+	Quadrant GetInverseQuadrant(Quadrant q);
+	Point GetRandomPointInQuadrant(Quadrant q);
 };
