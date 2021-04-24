@@ -9,6 +9,7 @@
 #include "Maze.h"
 #include "MazeGenerator.h"
 #include "MazeEntity.h"
+#include "PlayerEntity.h"
 
 class App
 {
@@ -41,6 +42,7 @@ private:
 	bool Quit;
 
 	MazeEntity* mazeEntity;
+	PlayerEntity* player;
 };
 
 

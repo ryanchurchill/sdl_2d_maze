@@ -275,22 +275,22 @@ Point MazeGenerator::GetRandomPointInQuadrant(Quadrant q)
 
 	switch (q) {
 	case UPPER_LEFT:
-		maxX /= 2;
-		maxY /= 2;
+		maxX = ceil(float(maxX) / 2) - 1;
+		maxY = ceil(float(maxY) / 2) - 1;
 		break;
 	case UPPER_RIGHT:
-		minX = maxX / 2;
-		maxY /= 2;
+		minX = ceil(float(maxX) / 2);
+		maxY = ceil(float(maxY) / 2) - 1;
 		break;
 	case LOWER_RIGHT:
-		minX = maxX / 2;
-		minY = maxY / 2;
+		minX = ceil(float(maxX) / 2);
+		minY = ceil(float(maxY) / 2);
 		break;
 	case LOWER_LEFT:
-		maxX /= 2;
-		minY = maxY / 2;
+		maxX = ceil(float(maxX) / 2) - 1;
+		minY = ceil(float(maxY) / 2);
 		break;
 	}
 
-	return Point{ GetRandomInt(minX, maxY), GetRandomInt(minY, maxY) };
+	return Point{ GetRandomInt(minX, maxX), GetRandomInt(minY, maxY) };
 }

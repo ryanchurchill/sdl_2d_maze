@@ -56,6 +56,7 @@ bool App::Init()
 	MazeGenerator mg = MazeGenerator();
 	Maze maze = mg.GenerateMaze();
 	mazeEntity = new MazeEntity(maze);
+	player = new PlayerEntity(maze.startingPoint);
 
 	return success;
 }
@@ -134,6 +135,7 @@ void App::RenderLoop()
 	//}
 
 	mazeEntity->OnRender(gRenderer);
+	player->OnRender(gRenderer);
 
 	//Update screen
 	SDL_RenderPresent(gRenderer);

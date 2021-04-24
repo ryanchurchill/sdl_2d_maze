@@ -3,6 +3,7 @@
 #include <ctime>
 #include <random>
 #include <stack>
+#include <cmath>
 
 #include "Maze.h"
 

@@ -147,6 +147,8 @@
     <ClCompile Include="Maze.cpp" />
     <ClCompile Include="MazeEntity.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
+    <ClCompile Include="PlayerEntity.cpp" />
+    <ClCompile Include="SDL_Helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="hello_world.bmp" />
@@ -156,7 +158,9 @@
     <ClInclude Include="Maze.h" />
     <ClInclude Include="MazeEntity.h" />
     <ClInclude Include="MazeGenerator.h" />
+    <ClInclude Include="PlayerEntity.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="SDL_Helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
