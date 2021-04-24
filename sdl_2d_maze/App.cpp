@@ -101,10 +101,13 @@ void App::ProcessEvent(SDL_Event e)
 			Quit = true;
 		}
 	}
+
+	player->ProcessEvent(e);
 }
 
 void App::LogicLoop()
 {
+	player->LogicLoop();
 }
 
 void App::RenderLoop()

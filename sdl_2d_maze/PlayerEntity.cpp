@@ -5,6 +5,27 @@ PlayerEntity::PlayerEntity(Point startingPoint) : CurrentPoint(startingPoint)
 {
 }
 
+void PlayerEntity::ProcessEvent(SDL_Event e)
+{
+	if (e.type == SDL_KEYDOWN) {
+		if (e.key.keysym.sym == SDLK_UP) {
+			TryMove(UP);
+		} else if (e.key.keysym.sym == SDLK_RIGHT) {
+			TryMove(RIGHT);
+		}
+		else if (e.key.keysym.sym == SDLK_DOWN) {
+			TryMove(DOWN);
+		}
+		else if (e.key.keysym.sym == SDLK_LEFT) {
+			TryMove(LEFT);
+		}
+	}
+}
+
+void PlayerEntity::LogicLoop()
+{
+}
+
 void PlayerEntity::OnRender(SDL_Renderer* gRenderer)
 {
 	// Red
@@ -14,4 +35,23 @@ void PlayerEntity::OnRender(SDL_Renderer* gRenderer)
 	int r = (PIXELS_PER_UNIT / 2) - 5;
 	SDL_Helper::DrawCircle(gRenderer, x, y, r);
 	
+}
+
+void PlayerEntity::TryMove(Direction d)
+{
+	// TODO: validate
+	switch (d) {
+	case UP:
+		CurrentPoint.y--;
+		break;
+	case RIGHT:
+		CurrentPoint.x++;
+		break;
+	case DOWN:
+		CurrentPoint.y++;
+		break;
+	case LEFT:
+		CurrentPoint.x--;
+		break;
+	}
 }
