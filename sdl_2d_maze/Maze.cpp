@@ -9,6 +9,7 @@ Maze::Maze()
 }
 
 // This is insane
+// [Edit] Eh, it kinda works!
 void Maze::DrawAsAscii()
 {
 	for (int y = 0; y < UNITS_Y; y++) {

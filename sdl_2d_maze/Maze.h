@@ -12,11 +12,11 @@ Let's make a maze of 32 x 24
 Each square is 20x20
 */
 
-const int UNITS_X = 32;
-const int UNITS_Y = 24;
+//const int UNITS_X = 32;
+//const int UNITS_Y = 24;
 
-//const int UNITS_X = 50;
-//const int UNITS_Y = 50;
+const int UNITS_X = 10;
+const int UNITS_Y = 10;
 
 struct MazeCell
 {

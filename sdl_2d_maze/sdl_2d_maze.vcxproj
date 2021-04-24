@@ -145,6 +145,7 @@
     <ClCompile Include="02_getting_an_image_on_the_screen.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Maze.cpp" />
+    <ClCompile Include="MazeEntity.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Maze.h" />
+    <ClInclude Include="MazeEntity.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>

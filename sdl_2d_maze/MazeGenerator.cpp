@@ -77,6 +77,8 @@ Direction MazeGenerator::GetRandomDirection(vector<Direction> directions)
 
 void MazeGenerator::CarveClosedMazeIntoPerfectMaze()
 {
+	m.DrawAsAscii();
+
 	// start at a random cell
 	Point startingCell = Point{ GetRandomInt(0, UNITS_X), GetRandomInt(0, UNITS_Y) };
 
@@ -106,6 +108,7 @@ void MazeGenerator::CarveClosedMazeIntoPerfectMaze()
 		}
 	}
 	cout << "Counter : " << counter << "\n";
+	m.DrawAsAscii();
 }
 
 bool MazeGenerator::CellHasBeenVisited(Point p)
